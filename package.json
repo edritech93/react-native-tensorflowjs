@@ -16,7 +16,8 @@
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-camera": "^3.44.2",
-    "react-native-image-base64": "^0.1.4"
+    "react-native-image-base64": "^0.1.4",
+    "react-native-tensorflow": "^0.1.8"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

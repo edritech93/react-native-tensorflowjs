@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, PermissionsAndroid } from 'react-native';
+import { View, PermissionsAndroid } from 'react-native';
 import Camera from './Camera';
 
 export default function App(props) {
@@ -30,7 +30,6 @@ export default function App(props) {
       alignItems: 'center',
       backgroundColor: 'white'
     }}>
-      <Text> App </Text>
       <Camera />
     </View>
   );

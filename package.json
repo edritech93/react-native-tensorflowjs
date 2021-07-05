@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.7.0",
     "@tensorflow/tfjs-react-native": "^0.6.0",
     "react": "17.0.1",

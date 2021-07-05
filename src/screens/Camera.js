@@ -4,28 +4,14 @@ import {
   StyleSheet,
   Dimensions,
   Pressable,
-  Modal,
-  Text,
-  ActivityIndicator,
 } from 'react-native';
-import {
-  getModel,
-  convertBase64ToTensor,
-  startPrediction,
-} from '../helpers/tensor-helper';
-import { cropPicture } from '../helpers/image-helper';
 import { RNCamera } from 'react-native-camera';
 import ImgToBase64 from 'react-native-image-base64';
-// import * as mobilenet from '@tensorflow-models/mobilenet';
-// import { fetch, decodeJpeg } from '@tensorflow/tfjs-react-native';
 import { TfImageRecognition } from 'react-native-tensorflow';
-
-const RESULT_MAPPING = ['Triangle', 'Circle', 'Square'];
 
 export default function Camera(props) {
   const cameraRef = useRef();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [presentedShape, setPresentedShape] = useState('');
 
   const handleImageCapture = async () => {
     try {
@@ -45,38 +31,7 @@ export default function Camera(props) {
     }
   };
 
-  const processImagePrediction = async (base64Image) => {
-    // const croppedData = await cropPicture(base64Image, 300);
-    // const model = await getModel();
-    // const tensor = await convertBase64ToTensor(croppedData.base64);
-
-    // const prediction = await startPrediction(model, tensor);
-
-    // const highestPrediction = prediction.indexOf(
-    //   Math.max.apply(null, prediction),
-    // );
-    // setPresentedShape(RESULT_MAPPING[highestPrediction]);
-
-    // https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528
-  };
-
-
-  // useEffect(() => {
-  //   const sub = setInterval(async () => {
-  //     const model = await mobilenet.load();
-  //     // Load an image from the web
-  //     const uri = 'https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528';
-  //     const response = await fetch(uri, {}, { isBinary: true });
-  //     const imageData = await response.arrayBuffer();
-  //     const imageTensor = decodeJpeg(imageData);
-
-  //     const prediction = (await model.predict(imageTensor))[0];
-  //     console.log('------------------------------------');
-  //     console.log('prediction => ', prediction);
-  //     console.log('------------------------------------');
-  //   }, 1000);
-  //   return () => sub.cleanInterval();
-  // }, [])
+  const processImagePrediction = async (base64Image) => {};
 
   useEffect(() => {
     async function _loadData() {
@@ -111,23 +66,6 @@ export default function Camera(props) {
 
   return (
     <View style={styles.container}>
-      <Modal visible={isProcessing} transparent={true} animationType="slide">
-        <View style={styles.modal}>
-          <View style={styles.modalContent}>
-            <Text>Your current shape is {presentedShape}</Text>
-            {presentedShape === '' && <ActivityIndicator size="large" />}
-            <Pressable
-              style={styles.dismissButton}
-              onPress={() => {
-                setPresentedShape('');
-                setIsProcessing(false);
-              }}>
-              <Text>Dismiss</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-
       <RNCamera
         zoom={0}
         ratio={'16:9'}
